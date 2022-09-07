@@ -7,7 +7,10 @@ public class Main {
 
         ArrayUtil arrayUtil = new ArrayUtil();
 
+        //с использованием циклов
         arrayUtil.sumOfValue(arr, 10);
+
+        //с использованием stream
         arrayUtil.sumOfValueWithStream(arr, 10);
     }
 }
