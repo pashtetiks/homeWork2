@@ -3,6 +3,7 @@ package task1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -20,6 +21,7 @@ public class Main {
             new Person(7, "Amelia"),
             new Person(8, "Amelia"),
     };
+
     public static void main(String[] args) {
         System.out.println("Raw data:");
         System.out.println();
@@ -34,18 +36,13 @@ public class Main {
         System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
         System.out.println();
 
-        Map<String , Map<Integer, List<Person>>> sortedData = Arrays.stream(RAW_DATA)
-                .distinct()
-                .collect(Collectors.groupingBy(Person::getName,
-                        Collectors.groupingBy(Person::getId)));
+        Dictionary dictionary = new Dictionary();
 
-        for(String key: sortedData.keySet()){
-            int count = 1;
-            System.out.println(key + ":");
-            for(Integer id: sortedData.get(key).keySet()){
-                System.out.println(count + " - " + key + " (" + id + ")");
-                count++;
-            }
-        }
+        showDictionary(dictionary.sortByName(RAW_DATA));
+    }
+
+    private static void showDictionary(Map<String, Long> dictionary) {
+        dictionary.forEach((key, value) -> System.out.println("Key: " + key + "\n" +
+                                                              "Value: " + value));
     }
 }
